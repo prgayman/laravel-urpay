@@ -1,0 +1,65 @@
+{
+    "name": "prgayman/laravel-urpay",
+    "description": "Laravel package for sending URPAY",
+    "keywords": [
+        "prgayman",
+        "laravel",
+        "urpay",
+        "wallet",
+        "payment"
+    ],
+    "homepage": "https://github.com/prgayman/laravel-urpay",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ayman Alaiwah",
+            "email": "aymanalaiwah.dev@gmail.com",
+            "homepage": "https://github.com/prgayman/",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/prgayman/laravel-urpay/issues",
+        "source": "https://github.com/prgayman/laravel-urpay"
+    },
+    "require": {
+        "php": "^8.2",
+        "guzzlehttp/guzzle": "^7.8.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Prgayman\\UrPay\\": "src"
+        },
+        "files": []
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Prgayman\\UrPay\\Test\\": "tests/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.0",
+        "orchestra/testbench": "^6.24",
+        "nunomaduro/collision": "^5.10"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Prgayman\\UrPay\\UrPayServiceProvider"
+            ],
+            "aliases": {
+                "UrPay": "Prgayman\\UrPay\\Facades\\UrPay"
+            }
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "post-autoload-dump": [
+            "@php ./vendor/bin/testbench package:discover --ansi"
+        ]
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
+
