@@ -4,6 +4,7 @@ namespace Prgayman\UrPay;
 
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Facades\Http;
+use Prgayman\UrPay\Responses\EcommPaymentExecuteResponse;
 use Prgayman\UrPay\Responses\EcommPaymentInitiateResponse;
 use Prgayman\UrPay\Responses\GenerateTokenResponse;
 use Prgayman\UrPay\Responses\ResendOtpResponse;
@@ -149,6 +150,62 @@ class Client
                         "mobileNumber" => $mobileNumber,
                         "otpReference" => $otpReference,
                         "purpose" => $purpose
+                    ]
+                )
+        );
+    }
+
+    /**
+     * Ecomm payment execute
+     *
+     * @param string $securityToken
+     * @param string $sessionId
+     * @param string $verificationToken
+     * @param int|float $amount
+     * @param string $transactionId
+     * @param string $mobileNumber
+     * @param string $otp
+     * @param string $otpReference
+     * @param string $currency
+     * @param string|null $requestId
+     * @return EcommPaymentExecuteResponse
+     * @throws ConnectionException
+     */
+    public function ecommPaymentExecute(
+        string    $securityToken,
+        string    $sessionId,
+        string    $verificationToken,
+        int|float $amount,
+        string    $transactionId,
+        string    $mobileNumber,
+        string    $otp,
+        string    $otpReference,
+        string    $currency = 'SAR',
+        ?string   $requestId = null,
+    ): EcommPaymentExecuteResponse
+    {
+        return new EcommPaymentExecuteResponse(
+            Http::withHeaders([
+                ...$this->defaultHeaders($requestId),
+                "X-Security-Token" => $securityToken,
+                "X-Session-Id" => $sessionId,
+                "X-Verification-Token" => $verificationToken,
+            ])
+                ->post(
+                    "{$this->baseUrl}/v1/payments/ecomm/execute",
+                    [
+                        "transactionInfo" => [
+                            "amount" => ["currency" => $currency, "value" => $amount],
+                            "externalTransactionId" => $transactionId,
+                            "sourceConsumerMobileNumber" => $mobileNumber,
+                            "targetMerchantId" => $this->config['merchant_id'],
+                            "targetMerchantWalletNumber" => $this->config['merchant_wallet_number'],
+                            "targetTerminalId" => $this->config['terminal_id'],
+                        ],
+                        "OTPInfo" => [
+                            "otp" => $otp,
+                            "otpReference" => $otpReference
+                        ]
                     ]
                 )
         );
