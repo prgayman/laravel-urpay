@@ -28,7 +28,7 @@ class UrPay implements UrPayInterface
     /** @inheritDoc */
     public function generateToken(?string $requestId = null): GenerateTokenResponse
     {
-        return $this->generateToken($requestId);
+        return $this->client->generateToken($requestId);
     }
 
     /** @inheritDoc */
@@ -46,6 +46,6 @@ class UrPay implements UrPayInterface
     /** @inheritDoc */
     public function ecommPaymentExecute(string $securityToken, string $sessionId, string $verificationToken, float|int $amount, string $transactionId, string $mobileNumber, string $otp, string $otpReference, string $currency = 'SAR', ?string $requestId = null): EcommPaymentExecuteResponse
     {
-        return $this->ecommPaymentExecute($securityToken, $sessionId, $verificationToken, $amount, $transactionId, $mobileNumber, $otp, $otpReference, $currency, $requestId);
+        return $this->client->ecommPaymentExecute($securityToken, $sessionId, $verificationToken, $amount, $transactionId, $mobileNumber, $otp, $otpReference, $currency, $requestId);
     }
 }

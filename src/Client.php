@@ -23,7 +23,7 @@ class Client
      *
      * @var string
      */
-    protected string $baseUrl = "https://walletsit.neoleap.com.sa/merchantb2b/";
+    protected string $baseUrl = "https://walletsit.neoleap.com.sa/merchantb2b";
 
     /**
      * Create a new instance of client
