@@ -140,9 +140,9 @@ class Client
     {
         return new ResendOtpResponse(
             Http::withHeaders([
-                ...$this->defaultHeaders($requestId),
                 "X-Security-Token" => $securityToken,
-                "X-Session-Id" => $sessionId
+                "X-Session-Id" => $sessionId,
+                ...$this->defaultHeaders($requestId),
             ])
                 ->post(
                     "{$this->baseUrl}/v1/otp/resend",

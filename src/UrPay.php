@@ -40,7 +40,7 @@ class UrPay implements UrPayInterface
     /** @inheritDoc */
     public function resendOtp(string $securityToken, string $sessionId, string $mobileNumber, string $otpReference, string $purpose, ?string $requestId = null): ResendOtpResponse
     {
-        return $this->client->resendOtp($securityToken, $sessionId, $mobileNumber, $otpReference, $requestId);
+        return $this->client->resendOtp($securityToken, $sessionId, $mobileNumber, $otpReference, $purpose, $requestId);
     }
 
     /** @inheritDoc */
