@@ -23,7 +23,7 @@ class Client
      *
      * @var string
      */
-    protected string $baseUrl = "https://walletsit.neoleap.com.sa/merchantb2b";
+    protected string $baseUrl;
 
     /**
      * Create a new instance of client
@@ -33,6 +33,7 @@ class Client
     public function __construct()
     {
         $this->config = config('urpay');
+        $this->baseUrl = $this->config["{$this->config['mode']}_base_url"];
     }
 
     /**
