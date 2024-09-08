@@ -106,7 +106,7 @@ class Client
                     "{$this->baseUrl}/v1/payments/ecomm/initiate",
                     [
                         "transactionInfo" => [
-                            "amount" => ["currency" => $currency, "value" => $amount],
+                            "amount" => ["currency" => $currency, "value" => $this->parseAmount($amount)],
                             "externalTransactionId" => $transactionId,
                             "sourceConsumerMobileNumber" => $mobileNumber,
                             "targetMerchantId" => $this->config['merchant_id'],
@@ -196,7 +196,7 @@ class Client
                     "{$this->baseUrl}/v1/payments/ecomm/execute",
                     [
                         "transactionInfo" => [
-                            "amount" => ["currency" => $currency, "value" => $amount],
+                            "amount" => ["currency" => $currency, "value" => $this->parseAmount($amount)],
                             "externalTransactionId" => $transactionId,
                             "sourceConsumerMobileNumber" => $mobileNumber,
                             "targetMerchantId" => $this->config['merchant_id'],
@@ -210,5 +210,16 @@ class Client
                     ]
                 )
         );
+    }
+
+    /**
+     * Parse amount
+     *
+     * @param int|float $amount
+     * @return float
+     */
+    public function parseAmount(int|float $amount): float
+    {
+        return (float)number_format($amount, 2);
     }
 }
