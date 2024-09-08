@@ -10,3 +10,7 @@ All notable changes to `prgayman/laravel-urpay` will be documented in this file
 
 - Allow change base url from config file
 - Fix amount
+
+## 1.1.1 - 2024-09-08
+
+- Fix live url
