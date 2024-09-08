@@ -2,7 +2,7 @@
 
 return [
     "test_base_url" => env("URPAY_TEST_BASE_URL", "https://walletsit.neoleap.com.sa/merchantb2b"),
-    "live_live_url" => env("URPAY_LIVE_BASE_URL", "https://wallet.neoleap.com.sa/merchantb2b"),
+    "live_base_url" => env("URPAY_LIVE_BASE_URL", "https://wallet.neoleap.com.sa/merchantb2b"),
     "mode" => env("URPAY_MODE", "test"),
     "client_id" => env("URPAY_CLIENT_ID"),
     "username" => env("URPAY_USERNAME"),
